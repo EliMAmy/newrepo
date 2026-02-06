@@ -35,11 +35,11 @@ header {
     margin-right: 15px;
 }
 /*navigatiob styles*/
-.navigation{
+nav{
   background-color: var(--accent2-color);
 }
 
-.navigation ul {
+nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -49,15 +49,18 @@ header {
     justify-content: space-around;
 }
 
-.navigation li {
+nav li {
     display: block;
     font-size: large;
     padding: 0.8rem 10px;
     text-decoration: none;
     color: var(--accent1-color);
 }
-
-.navigation li:hover {
+nav li a{
+    color: var(--accent1-color);
+    text-decoration: none;  
+}
+nav li:hover {
     background-color: var(--primary-color);
 }
 /*body styles*/
@@ -151,8 +154,76 @@ text-align: center;
   padding: 2px 18px 2px 18px;
 }
 
+/* Clasiffication view styles */
+#inv-display{
+  display: grid;
+  justify-content: center;
+  gap: 40px;
+}
+#inv-display li{
+  border: #bdcdd1 solid 3px;
+  border-radius: 10px;
+  padding: 0px;
 
-/* larger screen*/
+}
+#inv-display li::marker {
+  content: "";
+}
+
+#inv-display li img{
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+.namePrice{
+  text-align: center;
+}
+ hr{
+  background-color: #313030;
+}
+.namePrice span{
+  font-size: 4vw;
+}
+
+/* Detail view styles */
+
+#vehicleDetail{
+  display: grid;
+}
+
+#vehicleDetail img{
+  width: 100%;
+  height: auto;
+}
+.vehicleDetails p{
+  line-height: 1.5;
+}
+.vehicleDetails p:nth-child(even){
+  background-color: #dde7eb;
+}
+
+/* error view styles */
+.error_404{
+  display: grid;
+}
+.error_404 p {
+  font-size: 6vw;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin:  0px;
+  text-align: center;
+  font-weight: 700;
+}
+.error-image{
+  width: 100%;
+  height: auto;
+}
+.number_error{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0px;
+}
+
+
+/* LARGER SCREEN*/
 @media (min-width: 1025px) {
   .siteName a{
   font-size: 43px;
@@ -201,9 +272,41 @@ text-align: center;
   }
   .delorean .second .list{
   padding: 10px 25px 10px 25px;
-}
-  .delorean .second .list li{
-  padding: 10px;
-  font-size: large;
-}
+  }
+    .delorean .second .list li{
+    padding: 10px;
+    font-size: large;
+  }
+/* Classification view styles */
+  #inv-display{
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 40px;
+
+  }
+  .namePrice span{
+    font-size: 1.5vw;
+  }
+  /* Detail view styles */
+
+  #vehicleDetail{
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+  }
+  .vehicleDetails p{
+    line-height: 1.7;
+    font-size: large;
+  }
+  /* error view styles */
+  .error_404{
+    grid-template-columns: 1fr 2fr;
+  }
+  .error_404 p {
+    font-size: 3vw;
+    text-align:left;
+    padding-top: 120px;
+  }
+
+  .number_error{
+    font-size:5vw;
+  }
 }
