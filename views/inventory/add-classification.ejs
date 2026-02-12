@@ -1,0 +1,31 @@
+
+<h1><%= title %></h1>
+<div id="add-classification">
+    <%- messages() %>
+  <% if (errors) { %>
+    <ul class="notice">
+      <% errors.array().forEach(error => { %>
+        <li><%= error.msg %></li>
+      <% }) %>
+    </ul>
+  <% } %>
+  <form  action="/inv/add-classification" method="post">
+    <label for="classification_name">
+      Classification Name
+      <br><br><span class="hint">
+        NAME MUST BE ALPHANUMERIC CHARACTERS ONLY
+      </span><br>
+    </label>
+
+    <input 
+      type="text"
+      id="classification_name"
+      name="classification_name"
+      required
+      pattern="^[A-Za-z0-9]+$"
+      title="Only letters and numbers allowed"
+    ><br>
+
+    <button type="submit">Add Classification</button>
+  </form>
+</div>

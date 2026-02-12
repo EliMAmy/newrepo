@@ -1,0 +1,25 @@
+
+<h1><%= title %></h1>
+<%- messages() %>
+<div id="account-form">
+    <form  id="login-form" action="/account/login" method="post">
+        <label for="account_email">Email</label><br><br>
+        <input 
+        type="email" 
+        id="account_email" 
+        name="account_email" 
+        placeholder="Enter a valid email address"
+        required
+        ><br><br>
+
+        <label for="accountPassword">Password:</label> <br>
+        <span>Passwords must be at least 12 characters and contain at least 1 number, 1 capital letter and 1 special character</span>       <br><br>
+        <input type="password" name="account_password" id="accountPassword" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
+        <br><br>
+        <button id="button-form" type="submit">LOGIN</button>
+    </form>
+    <p id="no-account">
+        No account?
+        <a href="/account/register">Sign-up</a>
+    </p>
+</div>

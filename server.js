@@ -5,8 +5,8 @@
 /* ***********************
  * Require Statements
  *************************/
-/* const session = require("express-session")
-const pool = require('./database/') */
+const session = require("express-session")
+const pool = require('./database/')
 const express = require("express")
 const expressLayouts = require("express-ejs-layouts")
 const env = require("dotenv").config()
@@ -14,12 +14,14 @@ const app = express()
 const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
-const utilities = require("./utilities/index")
+const utilities = require("./utilities/")
+const accountRoute = require("./routes/accountRoute")
+const bodyParser = require("body-parser")
 
 /* ***********************
  * Middleware
  * ************************/
-/*  app.use(session({
+ app.use(session({
   store: new (require('connect-pg-simple')(session))({
     createTableIfMissing: true,
     pool,
@@ -28,7 +30,20 @@ const utilities = require("./utilities/index")
   resave: true,
   saveUninitialized: true,
   name: 'sessionId',
-})) */
+}))
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+
+
+
+// Express Messages Middleware
+app.use(require('connect-flash')())
+app.use(function(req, res, next){
+  res.locals.messages = require('express-messages')(req, res)
+  next()
+})
+
 
 /* ***********************
  * View Engine and Templates
@@ -37,15 +52,19 @@ app.set("view engine", "ejs")
 app.use(expressLayouts)
 app.set("layout", "./layouts/layout") // not at views root
 
+
 /* ***********************
  * Routes
  *************************/
 app.use(static)
 // Indeex Route
-app.get("/", baseController.buildHome)
+app.get("/", utilities.handleErrors(baseController.buildHome))
 
 // Inventory routes
 app.use("/inv", inventoryRoute)
+
+// Account routes
+app.use("/account", accountRoute)
 
 // INTENDED route for testing errors (footer link)
 
@@ -68,13 +87,13 @@ app.use(async (req, res, next) => {
 app.use(async (err, req, res, next) => {
   let nav = await utilities.getNav()
   console.error(`Error at: "${req.originalUrl}": ${err.message}`)
+  if(err.status == 404){ message = err.message} else {message = 'Oh no! There was a crash. Maybe try a different route?'}
   res.render("errors/error", {
     title: err.status || 'Server Error',
-    message: err.message,
+    message,
     nav
   })
 })
-
 
 /* ***********************
  * Local Server Information

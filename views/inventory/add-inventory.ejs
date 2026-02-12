@@ -1,0 +1,47 @@
+
+<h1><%= title %></h1>
+<%- messages() %>
+
+<div id="add-inventory">
+    <% if (errors) { %>
+    <ul class="notice">
+  <% errors.array().forEach(error => { %>
+    <li><%= error.msg %></li>
+  <%  }) %>
+  </ul>
+  <% } %>
+  <form action="/inv/add-inventory" method="post">
+    <label for="classificationList">Classification</label><br><br>
+      <%- classificationList %><br><br>
+
+    <label for="inv_make">Make</label><br>
+    <input type="text" id="inv_make" name="inv_make"  placeholder="Min of 3 characters" minlength="3" required><br>
+
+    <label for="inv_model">Model</label><br>
+    <input type="text" id="inv_model" name="inv_model" placeholder="Min of 3 characters" minlength="3" required><br>
+    
+    <label for="inv_description">Description</label><br><br>
+    <textarea id="inv_description" name="inv_description"  required></textarea><br>
+
+    <label for="inv_image">Image Path</label><br>
+    <input type="text" id="inv_image" name="inv_image" required placeholder="/images/vehicles/no-image.png"><br>
+
+    <label for="inv_thumbnail">Thumbnail Path</label><br>
+    <input type="text" id="inv_thumbnail" name="inv_thumbnail" required placeholder="/images/vehicles/no-image.png"><br>
+
+    <label for="inv_price">Price</label><br>
+    <input type="number" id="inv_price" name="inv_price" required placeholder="decimal or integer" min="0" step="0.01"><br>
+
+    <label for="inv_year">Year</label><br>
+    <input type="number" id="inv_year" name="inv_year" required  placeholder="4-digit year" min="1900" max="2099" title="Enter a valid 4-digit year"><br>
+
+    <label for="inv_miles">Miles</label><br>
+    <input type="number" id="inv_miles" name="inv_miles" required placeholder="digits only"  min="0"
+    step="1"><br>
+
+    <label for="inv_color">Color</label><br>
+    <input type="text" id="inv_color" name="inv_color" required ><br>
+
+    <button type="submit">Add Vehicle</button>
+  </form>
+</div>

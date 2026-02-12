@@ -31,8 +31,9 @@ header {
 #tools a {
     color: var(--accent2-color);
     text-decoration: none;
-    font-size: 16px;
+    font-size:larger;
     margin-right: 15px;
+    font-family: cursive;
 }
 /*navigatiob styles*/
 nav{
@@ -222,6 +223,107 @@ text-align: center;
   margin: 0px;
 }
 
+/*MY account view styles*/
+#account-form{
+  display: grid;
+  background-color: var(--secondary-color);
+  padding: 3rem;
+  color: var(--accent1-color);
+}
+
+#login-form input{
+  width: 100%;
+  padding: 10px;
+  border-radius: 15px;
+}
+#button-form{
+  border-radius: 15px;
+  padding: 10px 30px 10px 30px;
+}
+#no-account{
+  text-align: center;
+  font-size: large;
+}
+#no-account a{
+  color: var(--accent1-color);
+}
+
+/*My registration view styles*/
+#register{
+  border: var(--accent2-color) solid 3px;
+  margin: 20px 30px 20px 30px;
+}
+#register h1{
+    margin: 2rem 2rem 0rem 2rem;
+}
+
+#register-form{
+  padding: 1rem 2rem 2rem 2rem;
+  color: var(--accent2-color);
+  font-weight: bolder;
+}
+
+#login-register input{
+  width: 100%;
+  padding: 10px;
+}
+#button-register{
+  padding: 10px;
+  border-radius: 15px;
+  padding: 10px 30px 10px 30px;
+  background-color: var(--secondary-color);
+  color: var(--accent1-color);
+}
+input:required:invalid, input:focus:invalid {
+  border: 2px solid rgb(174, 17, 17);
+}
+ input:required:valid {
+  border: 2px solid rgb(65, 224, 65);
+ }
+.notice{
+  padding: 10px 40px 10px 40px;
+  color: #b81f1f;
+}
+.notice  li{
+  font-family: cursive;
+  font-weight: 400;
+  }
+/*Vehicle management view styles*/
+#management h1{
+    margin: 20px;
+  }
+#management ul{
+    list-style-type: none;
+    margin: 20px;
+  }
+#management ul li{
+    font-size: large;
+    padding: 10px;
+  }
+
+/*Classification view styles */
+#add-classification,#add-inventory{
+  display: grid;
+  grid-template-columns: 1fr;
+  background-color: var(--secondary-color);
+  padding: 2rem;
+  color: var(--accent1-color);
+  border-radius: 10px;
+}
+#add-classification form input,#add-inventory form input{
+  width: 60%;
+  padding: 5px;
+  margin: 10px 0px 10px 0px;
+}
+#add-classification button,#add-inventory button{
+  padding: 10px 20px 10px 20px;
+}
+#add-inventory textarea{
+  width: 100%;
+  height: 100px;
+}
+
+
 
 /* LARGER SCREEN*/
 @media (min-width: 1025px) {
@@ -281,7 +383,6 @@ text-align: center;
   #inv-display{
   grid-template-columns: 1fr 1fr 1fr;
   gap: 40px;
-
   }
   .namePrice span{
     font-size: 1.5vw;
@@ -308,5 +409,29 @@ text-align: center;
 
   .number_error{
     font-size:5vw;
+  }
+    /*MY account view styles*/
+  #account-form{
+  width: 38rem;
+  margin: auto;
+  }
+
+  #login-form input{
+  font-size: medium;
+  }
+  /*My registration view styles*/
+  #register{
+  width: 38rem;
+  margin: 30px auto 30px auto;
+  }
+  
+  /*Classification view styles */
+  #add-classification,#add-inventory{
+    margin: auto;
+    width: 38rem;
+    font-size: large;
+  }
+  #add-classification form input,#add-inventory form input{
+    width: 60%;
   }
 }
