@@ -282,7 +282,7 @@ input:required:invalid, input:focus:invalid {
  }
 .notice{
   padding: 10px 40px 10px 40px;
-  color: #b81f1f;
+  color: #020000;
 }
 .notice  li{
   font-family: cursive;

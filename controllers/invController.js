@@ -118,7 +118,7 @@ invCont.addNewClassification = async function (req, res, next) {
 }
 
 //* ***************************
-//*  build  the new add inventory view
+//*  build  the classification list for the add inventory item view
 //* ************************** */
 invCont.buildAddInventory = async function (req, res, next) { 
   try {
@@ -164,7 +164,7 @@ invCont.addNewInventoryItem = async function (req, res, next) {
     })
   } else {
     req.flash("notice", "Sorry, the addition of the new vehicle failed.")
-    let nav = await utilities.getNav()
+    //let nav = await utilities.getNav()
     const classificationList = await utilities.buildClassificationList()
     res.status(501).render("./inventory/add-inventory", {
       title: "Add New Vehicle",

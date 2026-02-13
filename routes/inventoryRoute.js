@@ -32,14 +32,11 @@ router.post(
 // route to add new inventory item view
 router.get("/add-inventory", utilities.handleErrors(invController.buildAddInventory));
 
-// Route to add new inventory item data
-router.post("/add-inventory", utilities.handleErrors(invController.addNewInventoryItem));
-
 //Route to post the new inventory item data
 router.post("/add-inventory", 
   inventoryValidate.inventoryRules(),
   inventoryValidate.checkInventoryData,
-  utilities.handleErrors(invController.addNewInventoryItem));
+  utilities.handleErrors(invController.addNewInventoryItem))
 
 module.exports = router;
 

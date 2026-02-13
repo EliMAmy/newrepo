@@ -15,6 +15,32 @@ async function buildLogin(req, res, next) {
 }
 
 /* ****************************************
+*  Process Login request
+* *************************************** */
+async function accountLogin(req, res) {
+  let nav = await utilities.getNav()
+  const { account_email, account_password } = req.body
+  const accountData= await accountModel.getAccountByEmail(account_email, account_password)
+
+  if (!accountData) {  
+    req.flash("notice", "Please check your credentials and try again.")
+    res.status(400).render("account/login", {
+      title: "Login",
+      nav,
+      errors: null,
+      account_email,
+    })
+  } else {
+    req.session.account_id = accountData.account_id
+    req.session.account_firstname = accountData.account_firstname
+    req.session.account_lastname = accountData.account_lastname
+    req.session.account_email = accountData.account_email
+    req.session.account_type = accountData.account_type 
+    res.redirect("/account/")     
+  }
+}
+
+/* ****************************************
 *  Deliver registration view
 * *************************************** */
 async function buildRegister(req, res, next) {
@@ -61,4 +87,4 @@ async function registerAccount(req, res) {
 }
 
 
-module.exports = { buildLogin, buildRegister, registerAccount }
+module.exports = { buildLogin, buildRegister, registerAccount, accountLogin }

@@ -1,6 +1,15 @@
 const pool = require("../database/")
-
-
+/* *****************************
+*   Get account data based on email
+* *************************** */
+async function getAccountByEmail(account_email, account_password){
+  try {
+    const sql = "SELECT * FROM account WHERE account_email = $1 AND account_password = $2"
+    return await pool.query(sql, [account_email, account_password])
+  } catch (error) {
+    return error.message
+  }
+}
 
 /* *****************************
 *   Register new account
@@ -14,4 +23,4 @@ async function registerAccount(account_firstname, account_lastname, account_emai
   }
 }
 
-module.exports = {registerAccount}
+module.exports = {registerAccount, getAccountByEmail}
