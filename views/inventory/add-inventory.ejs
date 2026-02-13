@@ -1,8 +1,6 @@
 
 <h1><%= title %></h1>
 <%- messages() %>
-
-<div id="add-inventory">
     <% if (errors) { %>
     <ul class="notice">
   <% errors.array().forEach(error => { %>
@@ -10,6 +8,8 @@
   <%  }) %>
   </ul>
   <% } %>
+<div id="add-inventory">
+
   <form action="/inv/add-inventory" method="post">
     <label for="classificationList">Classification</label><br><br>
       <%- classificationList %><br><br>

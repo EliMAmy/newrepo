@@ -1,6 +1,5 @@
 
 <h1><%= title %></h1>
-<div id="add-classification">
     <%- messages() %>
   <% if (errors) { %>
     <ul class="notice">
@@ -9,6 +8,8 @@
       <% }) %>
     </ul>
   <% } %>
+<div id="add-classification">
+
   <form  action="/inv/add-classification" method="post">
     <label for="classification_name">
       Classification Name
