@@ -1,0 +1,80 @@
+<h1><%= title %></h1>
+<%- messages() %>
+<% if (errors) { %>
+    <ul class="notice">
+        <% errors.array().forEach(error => { %>
+            <li><%= error.msg %></li>
+        <%  }) %>
+    </ul>
+<% } %>
+
+<h2>Welcome <%= accountData.account_firstname %> to update your account information</h2>
+<div id="update-form">
+    <h3>Edit Account</h3>
+    <form  id="update-account" action="/account/update" method="post">
+        <label for="account_firstname">First Name</label><br>
+        <input 
+        type="text" 
+        id="account_firstname" 
+        name="account_firstname" 
+       value="<%= account_firstname || accountData.account_firstname %>"
+        size="10"
+        required
+        ><br><br>
+        <label for="account_lastname">Last Name</label><br>
+        <input 
+        type="text" 
+        id="account_lastname" 
+        name="account_lastname" 
+        value="<%= account_lastname || accountData.account_lastname %>"
+        required
+        ><br><br>
+        <label for="account_email">Email address</label><br>
+        <input 
+        type="email" 
+        id="account_email" 
+        name="account_email" 
+        placeholder="Enter a valid email address"
+        value="<%= account_email || accountData.account_email %>"
+        required
+        ><br><br>
+        <button id="button-register" type="submit">Update</button>
+        <input 
+        type="hidden" 
+        name="account_id" 
+        value="<%= accountData.account_id || '' %>">
+    </form>
+</div>
+<div>
+<h3>Update Password</h3>
+    <form  id="update-password" action="/account/update-password" method="post">
+        <span>Passwords must be at least 12 characters and contain at least 1 number, 1 capital letter and 1 special character</span>       
+        <span>*Note your original password will be changed</span>
+        <br><br>
+        <label for="accountPassword">Password:</label> <br>
+        <input type="password" name="account_password" id="accountPassword" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
+        <br>
+        <button id="togglePassword" type="button">Show Password</button>
+        <button id="button-form" type="submit">Change Password</button>
+        <input 
+        type="hidden" 
+        name="account_id" 
+        value="<%= accountData.account_id || '' %>">
+    </form>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const toggleButton = document.getElementById("togglePassword");
+  const passwordField = document.getElementById("accountPassword");
+
+  toggleButton.addEventListener("click", () => {
+    if (passwordField.type === "password") {
+      passwordField.type = "text";
+      toggleButton.textContent = "Hide Password";
+    } else {
+      passwordField.type = "password";
+      toggleButton.textContent = "Show Password";
+    }
+  });
+});
+</script>

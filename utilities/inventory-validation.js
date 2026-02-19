@@ -48,23 +48,12 @@ validate.inventoryRules = () => {
         .withMessage("Item description must be at least 10 characters long."), // on error this message is sent.  
     // Make sure the item image URL is not empty and is a valid URL
     body("inv_image")
-        .trim()
-        .escape()
-        .notEmpty()
-        .withMessage("Please provide an image URL.") // on error this message is sent.
-        .bail() // if this validation fails, stop running validations and return the error message
-        .isURL()
-        .withMessage("Please provide a valid image URL."), // on error this message is sent.
+        .optional({ checkFalsy: true })
+        .trim(),
     // Make sure the item thumbnail URL is not empty and is a valid URL
     body("inv_thumbnail")
-        .trim()
-        .escape()
-        .notEmpty()
-        .withMessage("Please provide a thumbnail URL.") // on error this message is sent.
-        .bail() // if this validation fails, stop running validations and return the error message
-        .isURL()
-        .withMessage("Please provide a valid thumbnail URL."), // on error this message is sent.    
-
+        .optional({ checkFalsy: true })
+        .trim(),
     // Make sure the item price is not empty and is a valid decimal number
     body("inv_price")
         .trim()     
@@ -94,12 +83,13 @@ validate.inventoryRules = () => {
         .isLength({ min: 3 })
         .withMessage("Please provide a valid color."), // on error this message is sent.
     // Make sure the classification ID is not empty and is a valid integer
-    body("classificationList")
+    body("classification_id")
     .notEmpty()
-    .withMessage("Please choose a classification.")
+    .withMessage("Please select a classification.") // on error this message is sent.
     .bail()
     .isInt()
     .withMessage("Invalid classification selection."),
+
   ]
 }   
 
@@ -112,7 +102,7 @@ validate.checkInventoryData = async (req, res, next) => {
     errors = validationResult(req)
     if (!errors.isEmpty()) {
       let nav = await utilities.getNav()
-      const classificationList = await utilities.buildClassificationList()
+      const classificationList = await utilities.buildClassificationList(req.body.classification_id)
         res.render("./inventory/add-inventory", {
             errors,
             title: "Add New Vehicle",
@@ -126,11 +116,45 @@ validate.checkInventoryData = async (req, res, next) => {
             inv_thumbnail,
             inv_price,
             inv_miles,
-            inv_color
+            inv_color,
+            classification_id: req.body.classification_id
         })
         return
     }
     next()
 }
+
+//* ******************************
+// Check data and return errors  will be directed back to the edit view.
+validate.checkUpdateData = async (req, res, next) => {
+  const { inv_id, inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id} = req.body
+    
+    let errors = []
+    errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      let nav = await utilities.getNav()
+      const classificationList = await utilities.buildClassificationList(classification_id)
+        res.render("./inventory/edit-inventory", {
+            errors,
+            title: "Edit Vehicle",
+            nav,
+            classificationList,
+            inv_id,
+            inv_make,
+            inv_model,
+            inv_year,
+            inv_description,
+            inv_image,              
+            inv_thumbnail,
+            inv_price,
+            inv_miles,
+            inv_color,
+            classification_id
+        })
+        return
+    }
+    next()
+}
+
 
 module.exports = validate

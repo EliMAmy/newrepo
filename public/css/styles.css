@@ -302,7 +302,7 @@ input:required:invalid, input:focus:invalid {
   }
 
 /*Classification view styles */
-#add-classification,#add-inventory{
+#add-classification,#add-inventory,#edit-inventory,#delete-inventory{
   display: grid;
   grid-template-columns: 1fr;
   background-color: var(--secondary-color);
@@ -310,15 +310,15 @@ input:required:invalid, input:focus:invalid {
   color: var(--accent1-color);
   border-radius: 10px;
 }
-#add-classification form input,#add-inventory form input{
+#add-classification form input,#add-inventory form input,#edit-inventory form input,#delete-inventory form input{
   width: 60%;
   padding: 5px;
   margin: 10px 0px 10px 0px;
 }
-#add-classification button,#add-inventory button{
+#add-classification button,#add-inventory button,#edit-inventory button,#delete-inventory button{
   padding: 10px 20px 10px 20px;
 }
-#add-inventory textarea{
+#add-inventory textarea,#edit-inventory textarea,#delete-inventory textarea{
   width: 100%;
   height: 100px;
 }
@@ -426,12 +426,12 @@ input:required:invalid, input:focus:invalid {
   }
   
   /*Classification view styles */
-  #add-classification,#add-inventory{
+  #add-classification,#add-inventory,#edit-inventory,#delete-inventory{
     margin: auto;
     width: 38rem;
     font-size: large;
   }
-  #add-classification form input,#add-inventory form input{
+  #add-classification form input,#add-inventory form input,#edit-inventory form input,#delete-inventory form input{
     width: 60%;
   }
 }
