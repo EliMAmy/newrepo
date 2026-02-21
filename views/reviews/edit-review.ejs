@@ -1,0 +1,49 @@
+<h1><%= title %></h1>
+<%- messages() %>
+
+<% if (errors) { %>
+  <ul class="notice">
+    <% errors.array().forEach(error => { %>
+      <li><%= error.msg %></li>
+    <% }) %>
+  </ul>
+<% } %>
+
+<div class="edit-review-container">
+
+  <p class="required-note">ALL FIELDS ARE REQUIRED.</p>
+
+  <form action="/review/update" method="post">
+
+    <label for="review_date">Review Date</label>
+    <input 
+      type="text"
+      id="review_date"
+      value="<%= new Date(review_date).toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            }) %>"
+      readonly
+      class="readonly-input"
+    >
+
+    <label for="review_text">Review Text</label>
+    <textarea 
+      name="review_text"
+      id="review_text"
+      required
+      minlength="3"
+      class="edit-review-textarea"
+    ><%= review_text %></textarea>
+
+    <input type="hidden" name="review_id" value="<%= review_id %>">
+    <input type="hidden" name="inv_id" value="<%= inv_id %>">
+
+    <button type="submit" class="update-btn">
+      Update
+    </button>
+
+  </form>
+
+</div>

@@ -19,6 +19,9 @@ const accountRoute = require("./routes/accountRoute")
 const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser")
 
+const reviewRoute = require("./routes/reviewRoute")
+
+
 /* ***********************
  * Middleware
  * ************************/
@@ -75,6 +78,9 @@ app.use("/inv", inventoryRoute)
 // Account routes
 app.use("/account", accountRoute)
 
+// Review routes
+app.use("/review", reviewRoute)
+
 // INTENDED route for testing errors (footer link)
 
 app.get("/cause-error", (req, res, next) => {
@@ -117,3 +123,5 @@ const host = process.env.HOST
 app.listen(port, () => {
   console.log(`app listening on ${host}:${port}`)
 })
+
+

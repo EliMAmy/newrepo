@@ -41,6 +41,9 @@ invCont.buildByInvId = async function (req, res, next) {
     const inv_id = req.params.invId
     const data = await invModel.getInventoryByInvId(inv_id)
 
+    const reviewModel = require("../models/review-model")
+    const reviews = await reviewModel.getReviewsByInventoryId(inv_id)
+
     if (!data || data.length === 0) {
       throw new Error("Vehicle not found!")
     }
@@ -51,7 +54,9 @@ invCont.buildByInvId = async function (req, res, next) {
     res.render("./inventory/detail", {
       title: data[0].inv_year + " " + data[0].inv_make + " " + data[0].inv_model,
       nav,
-      detail
+      detail,
+      inv_id,
+      reviews
     })
   } catch (err) {
     next(err) // esto ENVÍA el error al middleware global

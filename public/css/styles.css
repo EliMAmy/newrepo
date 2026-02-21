@@ -201,6 +201,64 @@ text-align: center;
 .vehicleDetails p:nth-child(even){
   background-color: #dde7eb;
 }
+.review-list {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.review-item {
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #000;
+  padding-bottom: 0.5rem;
+}
+
+.review-text {
+  margin-top: 0.5rem;
+}
+
+.review-form-container {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  margin-top: 1rem;
+  background-color: #f9f9f9;
+}
+
+.review-form-container label {
+  display: block;
+  margin-top: 0.75rem;
+  font-weight: bold;
+}
+
+.screen-name-input {
+  width: 250px;
+  padding: 0.4rem;
+  margin-top: 0.25rem;
+  background-color: #eaeaea;
+  border: 1px solid #999;
+}
+
+.review-textarea {
+  width: 100%;
+  height: 120px;
+  margin-top: 0.25rem;
+  padding: 0.5rem;
+  border: 2px solid #6a8bd6;
+  background-color: #eaeaea;
+  resize: vertical;
+  font-size: 1rem;
+}
+
+.review-submit-btn {
+  margin-top: 0.75rem;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid #888;
+  background-color: #e0e0e0;
+  cursor: pointer;
+}
+
+.review-submit-btn:hover {
+  background-color: #d0d0d0;
+}
 
 /* error view styles */
 .error_404{
@@ -334,6 +392,64 @@ input:required:invalid, input:focus:invalid {
   border-radius: 10px;
 }
 
+/*edit review*/
+.edit-review-container, .delete-review-container {
+  background-color: var(--secondary-color);
+  padding: 1.5rem;
+  border-radius: 10px;
+  width: 70%;
+  margin-top: 1rem;
+  color: var(--accent1-color);
+}
+
+.required-note {
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.edit-review-container label,.delete-review-container label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+.readonly-input {
+  width: 250px;
+  padding: 0.4rem;
+  background-color: #cfe3eb;
+  border: 1px solid #999;
+  margin-top: 0.25rem;
+}
+
+.edit-review-textarea , 
+.delete-review-textarea{
+  width: 100%;
+  height: 120px;
+  margin-top: 0.25rem;
+  padding: 0.5rem;
+  border: 1px solid #999;
+  resize: vertical;
+  font-size: 1rem;
+}
+
+.update-btn, .delete-btn {
+  margin-top: 1rem;
+  padding: 0.4rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #555;
+  background-color: #e0e0e0;
+  cursor: pointer;
+}
+
+.update-btn:hover,.delete-btn:hover {
+  background-color: #d0d0d0;
+}
+
+.review-form-container{
+  background-color: var(--secondary-color);
+  color: var(--accent1-color);
+  border-radius: 10px;
+}
 
 /* LARGER SCREEN*/
 @media (min-width: 1025px) {
@@ -451,4 +567,9 @@ input:required:invalid, input:focus:invalid {
     width: 38rem;
     font-size: large;
   }
+  .review-form-container{
+    margin: auto;
+    width: 70%;
+
+}
 }

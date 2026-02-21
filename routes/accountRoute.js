@@ -58,4 +58,10 @@ router.post("/update-password", utilities.checkLogin,
     regValidate.checkPasswordData,
      utilities.handleErrors(accountController.updatePassword))
 
+router.get(
+  "/management",
+  utilities.checkLogin,
+  utilities.handleErrors(accountController.buildManagement)
+)
+
 module.exports = router;

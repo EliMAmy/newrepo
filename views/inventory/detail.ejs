@@ -4,5 +4,73 @@
   res.redirect('/')
 } %>
 
-<%# messages() %>
 <%- detail %>
+
+<h2>Customer Reviews</h2>
+
+<% if (reviews && reviews.rows && reviews.rows.length > 0) { %>
+  <ul class="review-list">
+    <% reviews.rows.forEach(review => { %>
+      <li class="review-item">
+        <strong>
+          <%= review.account_firstname.charAt(0) +
+              review.account_lastname %>
+        </strong>
+        wrote on
+        <%= new Date(review.review_date).toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric"
+            }) %>
+        <br>
+        <p class="review-text">
+          <%= review.review_text %>
+        </p>
+      </li>
+    <% }) %>
+  </ul>
+<% } else { %>
+  <p>No reviews yet.</p>
+<% } %>
+
+<% if (!loggedin) { %>
+  <p>
+    <a href="/account/login">Log in</a> to add a review.
+  </p>
+<% } else { %>
+  <h2>Add Your Own Review</h2>
+
+  <div class="review-form-container">
+
+    <form action="/review/add" method="post">
+
+      <label for="screen_name">Screen Name:</label>
+      <input 
+        type="text" 
+        id="screen_name"
+        value="<%= accountData.account_firstname.charAt(0) + accountData.account_lastname %>"
+        readonly
+        class="screen-name-input"
+      >
+
+      <label for="review_text">Review:</label>
+      <textarea 
+        name="review_text"
+        id="review_text"
+        required
+        minlength="3"
+        placeholder="Write your review here..."
+        class="review-textarea"
+      ></textarea>
+
+      <input type="hidden" name="inv_id" value="<%= inv_id %>">
+      <input type="hidden" name="account_id" value="<%= accountData.account_id %>">
+
+      <button type="submit" class="review-submit-btn">
+        Submit Review
+      </button>
+
+    </form>
+
+  </div>
+<% } %>
