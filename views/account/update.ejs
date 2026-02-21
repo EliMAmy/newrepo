@@ -9,7 +9,7 @@
 <% } %>
 
 <h2>Welcome <%= accountData.account_firstname %> to update your account information</h2>
-<div id="update-form">
+<div id="update-account">
     <h3>Edit Account</h3>
     <form  id="update-account" action="/account/update" method="post">
         <label for="account_firstname">First Name</label><br>
@@ -45,16 +45,16 @@
         value="<%= accountData.account_id || '' %>">
     </form>
 </div>
-<div>
-<h3>Update Password</h3>
+<div id="update-password">
+    <h3>Update Password</h3>
     <form  id="update-password" action="/account/update-password" method="post">
         <span>Passwords must be at least 12 characters and contain at least 1 number, 1 capital letter and 1 special character</span>       
         <span>*Note your original password will be changed</span>
         <br><br>
         <label for="accountPassword">Password:</label> <br>
         <input type="password" name="account_password" id="accountPassword" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
-        <br>
-        <button id="togglePassword" type="button">Show Password</button>
+        <br><br>
+        <button id="togglePassword" type="button">Show Password</button><br><br>
         <button id="button-form" type="submit">Change Password</button>
         <input 
         type="hidden" 

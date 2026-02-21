@@ -39,20 +39,19 @@ header {
 nav{
   background-color: var(--accent2-color);
 }
-
 nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: row;
-    gap: 2px;
+    gap: 1px;
     justify-content: space-around;
 }
 
 nav li {
     display: block;
-    font-size: large;
+    font-size: small;
     padding: 0.8rem 10px;
     text-decoration: none;
     color: var(--accent1-color);
@@ -289,7 +288,7 @@ input:required:invalid, input:focus:invalid {
   font-weight: 400;
   }
 /*Vehicle management view styles*/
-#management h1{
+#management h1,#management-inventory{
     margin: 20px;
   }
 #management ul{
@@ -323,6 +322,17 @@ input:required:invalid, input:focus:invalid {
   height: 100px;
 }
 
+#button-form{
+  background-color: var(--secondary-color);
+  color: var(--accent1-color);
+  padding: 10px 20px 10px 20px;
+}
+#togglePassword{
+  background-color:var(--accent2-color);
+  color: var(--accent1-color);
+  padding: 10px 20px 10px 20px;
+  border-radius: 10px;
+}
 
 
 /* LARGER SCREEN*/
@@ -333,7 +343,9 @@ input:required:invalid, input:focus:invalid {
   body{
     background-image: url(/images/site/checkerboard.jpg);
   }
-
+  nav li {
+      font-size: large;
+  }
   #wrapper {
       margin: 2% 12% 2% 12%;
       background-color: var(--accent1-color);
@@ -431,7 +443,12 @@ input:required:invalid, input:focus:invalid {
     width: 38rem;
     font-size: large;
   }
-  #add-classification form input,#add-inventory form input,#edit-inventory form input,#delete-inventory form input{
+  #add-classification form input,#add-inventory form input,#edit-inventory form input,#delete-inventory form input,#update-account form input,#update-password form input{
     width: 60%;
+  }
+  #update-account,#update-password{
+    padding: 10px;
+    width: 38rem;
+    font-size: large;
   }
 }
